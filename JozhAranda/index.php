@@ -1,0 +1,1 @@
+<?php include('../cgi/profile.php'); ?>
