@@ -9,8 +9,9 @@
         return $url;
     }
     $_SESSION['url'] = url();
-    if(trim($_SESSION['url']) == $_SESSION['user']) {
+    if(trim($_SESSION['url']) == ($_SESSION['user'] || $_COOKIE['user'])) {
         $aux = $_SESSION['user'];
+        $aux = $_COOKIE['user'];
         $user = $db->query("SELECT username, photo, scholar, bio, gender FROM user WHERE username = '$aux'");
         $row = $user->fetch(PDO::FETCH_ASSOC);
     }
@@ -22,7 +23,7 @@
 <html lang="en">    
     <head>
         <meta charset="utf-8">
-        <?php if (!empty($_SESSION['user'])) echo "<title>". $_SESSION['user'] ." | Ofrezco</title>"; 
+        <?php if (!empty($_SESSION['user']) || !empty($_COOKIE['user'])) echo "<title>". $_COOKIE['user'].$_SESSION['user'] ." | Ofrezco</title>"; 
         else echo "<title>".$_SESSION['url']."| Ofrezco</title>";?>
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,6 +35,7 @@
         <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/css/bootstrap-responsive.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700' rel='stylesheet' type='text/css'>
         <link href="http://blueimp.github.io/jQuery-File-Upload/css/jquery.fileupload.css" rel="stylesheet">
+        <link href="../../css/logo.css" rel="stylesheet">
 		<style>
             body{font-family:'Open Sans', sans-serif;background:#fbfbfb;}
 			.title{font-weight:bold;color:#f9f9f9;font-style:italic;}
@@ -60,22 +62,34 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
+                    </a>                        
+                    <a class="brand title" href="../../" style="font-size:30px;">
+                        <div class="logo">
+                          <div class="box n1"></div>
+                          <div class="box n2"></div>
+                          <div class="box n3"></div>
+                          <div class="box n11"></div>
+                          <div class="box n5"></div>
+                          <div class="box n6"></div>
+                          <div class="box n7"></div>
+                          <div class="box n9"></div>
+                        </div>
                     </a>
-                    <a class="brand title" href="../../" style="font-size:30px;">Ofrezco!</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
                             <li><a href="../../">HOME</a></li>
                             <li><a href="#"><span class="label label-success">1</span> TO DO</a></li>
-                            <li><a href="#"><img src="../img/chat.png" alt="conversation"></a></li> 
+                            <li><a href="#"><img src="../../img/chat.png" alt="conversation"></a></li> 
                             <li><a href="#">SHOPPING</a></li>  
                             <li><a href="">START SELLING</a></li> 
                             
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" style="background:rgb(239,239,233);border:0;" data-toggle="dropdown"><?php echo $_SESSION['user']; ?><b class="caret"></b></a>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" style="background:rgb(239,239,233);border:0;" data-toggle="dropdown"><?php echo $_COOKIE["user"].$_SESSION['user']; ?><b class="caret"></b></a>
                                 <ul class="dropdown-menu" style="background:rgb(150, 150, 150);">
-                                    <li><a href="../core/user/setting/"><i class="icon-cog"></i> Setting</a></li>
-                                    <li><a href="../help/support.php"><i class="icon-envelope"></i> Contact Support</a></li>
+                                    <li><a href="../"><i class="icon-user"></i> user</a></li>
+                                    <li><a href="../../core/user/setting/"><i class="icon-cog"></i> Setting</a></li>
+                                    <li><a href="../../help/support.php"><i class="icon-envelope"></i> Contact Support</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="../core/logout.php"><i class="icon-off"></i> Logout</a></li>
+                                    <li><a href="../../core/logout.php"><i class="icon-off"></i> Logout</a></li>
                                 </ul>
                             </li>
                         </ul>

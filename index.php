@@ -17,6 +17,7 @@
         <link href="http://bootswatch.com/2/flatly/bootstrap.css" rel="stylesheet">
         <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/css/bootstrap-responsive.css" rel="stylesheet">
         <link href="css/phrase.css" rel="stylesheet">
+        <link href="css/logo.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700' rel='stylesheet' type='text/css'>
 		<style>
             body{font-family:'Open Sans', sans-serif;background:#fbfbfb;}
@@ -29,6 +30,9 @@
 			.dropdown-submenu{background:#fff;}
 			.dropdown-toggle:hover{background:#fff;color:#999;}
             .dropdown-menu > li > a:hover {background:#eee;}
+            .nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus {background:#ddd;}      
+            .media {margin:20px 0;padding:30px;}
+            .dp {border:5px solid rgb(251, 251, 251);transition:all 0.2s ease-in-out;}         
         </style>
         <!--[if lt IE 9]>
             <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"></script>
@@ -46,18 +50,29 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand title" href="#" style="font-size:30px;">Ofrezco!</a>
+                    <a class="brand title" href="#" style="font-size:30px;">
+                        <div class="logo">
+                          <div class="box n1"></div>
+                          <div class="box n2"></div>
+                          <div class="box n3"></div>
+                          <div class="box n11"></div>
+                          <div class="box n5"></div>
+                          <div class="box n6"></div>
+                          <div class="box n7"></div>
+                          <div class="box n9"></div>
+                        </div>
+                    </a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
                             <li><a href="#">HOME</a></li>
                             <li><a href="#"><span class="label label-success">1</span> TO DO</a></li>
                             <li><a href="#"><img src="img/chat.png" alt="conversation"></a></li> 
                             <li><a href="#">SHOPPING</a></li>  
-                            <li><a href="<?php echo $_SESSION['user'].'/i/'; ?>">START SELLING</a></li> 
+                            <li><a href="<?php echo $_COOKIE["user"].$_SESSION['user'].'/i/'; ?>">START SELLING</a></li> 
                             
-                            <li class="dropdown"><a href="" class="dropdown-toggle" style="background:rgb(239,239,233);border:0;" data-toggle="dropdown"><?php echo $_SESSION['user']; ?><b class="caret"></b></a>
+                            <li class="dropdown"><a href="" class="dropdown-toggle" style="background:rgb(239,239,233);border:0;" data-toggle="dropdown"><?php echo $_COOKIE["user"].$_SESSION['user']; ?><b class="caret"></b></a>
                                 <ul class="dropdown-menu" style="background:rgb(150, 150, 150);">
-                                    <li><a href="<?php echo $_SESSION['user']; ?>"><i class="icon-user"></i> user</a></li>
+                                    <li><a href="<?php echo $_COOKIE["user"].$_SESSION['user']; ?>"><i class="icon-user"></i> user</a></li>
                                     <li><a href="core/user/setting/"><i class="icon-cog"></i> Setting</a></li>
                                     <li><a href="help/support.php"><i class="icon-envelope"></i> Contact Support</a></li>
                                     <li class="divider"></li>
@@ -72,15 +87,22 @@
             <div class="navbar-inner">
                 <div class="container">
                     <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-                    </button><a class="brand title" href="#" style="font-size:30px;">Ofrezco!</a>
+                    </button><a class="brand title" href="#" style="font-size:30px;">
+                        <div class="logo">
+                          <div class="box n1"></div>
+                          <div class="box n2"></div>
+                          <div class="box n3"></div>
+                          <div class="box n11"></div>
+                          <div class="box n5"></div>
+                          <div class="box n6"></div>
+                          <div class="box n7"></div>
+                          <div class="box n9"></div>
+                        </div>
+                    </a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
-                            <!--li><a href="#">HOME</a></li>
-                            <li class="divider-vertical"></li-->
                             <li><a href="#">GUIDE</a></li>
-                            <!--li class="divider-vertical"></li-->
                             <li><a href="#signin" role="button" data-toggle="modal">SIGN IN</a></li>
-                            <!--li class="divider-vertical"></li-->
                             <li><a href="#join" role="button" data-toggle="modal"><span class="label label-success">JOIN</span></a></li>
                         </ul>    
                     </div>
@@ -88,8 +110,8 @@
             </div>
     <?php } ?>    
         </div>
-		<div class="navbar hidden-phone" style="width:98%;">
-			<div class="thumbnails row-fluid breadcrumb span12 " style="margin:0;background:rgba(245, 245, 245, 0.6);">
+		<div class="navbar hidden-phone" style="width:100%;margin:0;">
+			<div class="row breadcrumb" style="margin:0;background:rgba(245, 245, 245, 0.6);">
                 <div class="span3" style="margin-left:5%;margin-top:5px;">
 					<div class="btn-group">
 						<a class="btn dropdown-toggle input-medium" data-toggle="dropdown" href="#">Categories<span class="caret" style="margin-left:50px;"></span></a>
@@ -228,10 +250,10 @@
 						</ul>
 					</div>
                 </div>
-                <form class="span4 pull-right" style="margin-top:8px;margin-right:3%;margin-bottom:0;">
+                <form role="form" class="span6 pull-right" style="margin-top:8px;margin-bottom:0;">
                     <div class="input-append">
-                      <input class="input-xlarge" id="appendedInput" type="text" placeholder="Search..." style="padding:10px;" autocomplete="off" />
-                      <button class="add-on" style="height:45px;"><i class="icon-search"></i></button>
+                      <input class="span5" id="appendedInput" type="text" placeholder="Find Amazing Ofrezco, starting at $10" style="padding:10px;" autocomplete="off" />
+                      <button class="add-on" style="height:44px;"><i class="icon-search"></i></button>
                     </div>
                 </form>				
             </div>            
@@ -244,23 +266,23 @@
         <div class="thumbnails  hidden-phone" style="margin:0;border-bottom:1px solid #ddd;">
             <?php if( $hora >= 6 && $hora < 12) { ?>
             <img src="http://d2nt7j7ljjsiah.cloudfront.net/assets/v2_backgrounds/bg-homepage-message-day-early-22799bb4f9d5876f31a17ef56b7bc6b1.png" alt="morning" />
-			<div class="span8">
-				<h4 style="font-weight:600;">Hey <?php echo $_SESSION['user']; ?>, It's coffee time!</h4>
+			<div class="span12" style="width:100%;margin:0;background:rgb(205,244,255);">
+				<h4 style="font-weight:600;margin-left:15px;">Hey <?php echo $_COOKIE["user"].$_SESSION['user']; ?>, It's coffee time!</h4>
             </div>
             <?php } elseif($hora >= 12 && $hora < 18) { ?>
 			<img src="http://d2nt7j7ljjsiah.cloudfront.net/assets/v2_backgrounds/bg-homepage-message-day-late-265c5df9a472f80e7298729c3149a237.png" alt="afternoon" />
-			<div class="span8">
-				<h4 style="font-weight:600;">Hey <?php echo $_SESSION['user']; ?>, How was lunch?</h4>
+			<div class="span12" style="width:100%;margin:0;background:rgb(205,244,255);">
+				<h4 style="font-weight:600;margin-left:15px;">Hey <?php echo $_COOKIE["user"].$_SESSION['user']; ?>, How was lunch?</h4>
             </div>
             <?php } elseif($hora >= 18 && $hora < 24) { ?>
 			<img src="http://d2nt7j7ljjsiah.cloudfront.net/assets/v2_backgrounds/bg-homepage-message-night-early-c0f2514eec7b21076d42cbbd320d6fea.png" alt="evening" />
 			<div class="span12" style="width:100%;margin:0;background:rgb(0,105,140);">
-				<h4 style="font-weight:600;margin-left:15px;color:#fff;">Hey <?php echo $_SESSION['user']; ?>, What a beautiful evening!</h4>
+				<h4 style="font-weight:600;margin-left:15px;color:#fff;">Hey <?php echo $_COOKIE["user"].$_SESSION['user']; ?>, What a beautiful evening!</h4>
             </div>
             <?php } else { ?>
 			<img src="http://d2nt7j7ljjsiah.cloudfront.net/assets/v2_backgrounds/bg-homepage-message-night-early-c0f2514eec7b21076d42cbbd320d6fea.png" alt="night" />
 			<div class="span12" style="width:100%;margin:0;background:rgb(0,105,140);">
-				<h4 style="font-weight:600;margin-left:15px;color:#fff;">Hey <?php echo $_SESSION['user']; ?>, You should be having dinner just about now...</h4>
+				<h4 style="font-weight:600;margin-left:15px;color:#fff;">Hey <?php echo $_COOKIE["user"].$_SESSION['user']; ?>, You should be having dinner just about now...</h4>
             </div>
             <?php } ?>
         </div>
@@ -296,7 +318,7 @@
 				</section>
 			</div>
 			<div class="span6 pull-right">
-				<h4 style="margin-top:125px;line-height:1.2em;font-weight:400;">The service where you find something you like, starting at $10</h4>
+				<h3 style="margin-top:65px;line-height:1.2em;font-weight:400;">The service where you find something you like, starting at $10</h3>
 				<a href="#join" role="button" data-toggle="modal" class="btn btn-success" style="margin-left:35%;">Get started!</a>
 			</div>
 		</div>
@@ -309,7 +331,249 @@
             <strong>Completed!</strong> Your request has been made, please check your email.
         </div>
         <?php } ?>
-        <div class="container" style="border-bottom:2px solid #ddd;">
+        <div class="container" style="margin-bottom:10px;">
+            <div class="breadcrumb" style="border:1px solid #ddd;">
+                <div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
+                    <ul class="nav nav-list span3">
+                        <li class="active"><a href="#tab1" data-toggle="tab">Gift</a></li>
+                        <li><a href="#tab2" data-toggle="tab">Graphics & Designer</a></li>
+                        <li><a href="#tab3" data-toggle="tab">Video & Animation</a></li>
+                        <li><a href="#tab4" data-toggle="tab">Online Marketing</a></li>
+                        <li><a href="#tab5" data-toggle="tab">Writing & Translation</a></li>
+                        <li><a href="#tab6" data-toggle="tab">Advertising</a></li>
+                        <li><a href="#tab7" data-toggle="tab">Business</a></li>
+                        <li><a href="#tab8" data-toggle="tab">Programming & Tech</a></li>
+                        <li><a href="#tab9" data-toggle="tab">Music & Audio</a></li>
+                        <li><a href="#tab10" data-toggle="tab">Fun & Bizarre</a></li>
+                        <li><a href="#tab11" data-toggle="tab">Lifestyle</a></li>
+                    </ul>
+                    <div class="span1"></div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small> 
+                            </div>
+                          </div>
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>  
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tab-pane" id="tab2">
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tab-pane" id="tab3">
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tab-pane" id="tab4">
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tab-pane" id="tab5">
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tab-pane" id="tab6">
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tab-pane" id="tab7">
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tab-pane" id="tab8">
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tab-pane" id="tab9">
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tab-pane" id="tab10">
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tab-pane" id="tab11">
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                          <div class="thumbnail clearfix" style="border:0;">
+                            <img class="media-object dp img-circle pull-right" alt="firstname" src="img/jozh.jpg" style="width: 60px;height:60px;">
+                            <img src="http://placehold.it/240x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                            <div class="caption" class="pull-left">
+                              <h4><a href="#">Title</a></h4>
+                              <p>Description</p>
+                              <small><b>From: </b>First name - Last name</small>   
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--div class="container" style="border-bottom:2px solid #ddd;">
             <h4>Popular Categories</h4><br>
             <div class="row-fluid span12" style="margin:0;">
                 <div class="span4" id="categories" style="border-radius:5px;">
@@ -509,7 +773,7 @@
             <div class="container span3  hidden-phone" style="margin-left:32%;margin-top:55px;margin-bottom:35px;">
                 <button class="btn span4"><h4>Load More!</h4></button>
             </div>
-        </div>            
+        </div-->            
         
         <!--div class="row-fluid" style="background:#fff;margin-top:50px;">
             <h4>Top Rated Sellers</h4>
@@ -572,11 +836,11 @@
                 </div>
               </div>
         </div-->
-        <div class="row-fluid" style="background:#f5f5f5;border-bottom:1px solid #ddd;">
+        <div class="row-fluid" style="background:#f5f5f5;border-bottom:1px solid #ddd;border-top:1px solid #ddd;">
             <div class="span3"></div>
             <form class="span6" style="margin-top:35px;">
                 <div class="input-append span7">
-                  <input class="input-xxlarge" id="appendedInput" type="text" placeholder="Find Amazing '', starting at $10" autocomplete="off" style="height:30px;">
+                  <input class="input-xxlarge" id="appendedInput" type="text" placeholder="Find Amazing Ofrezco, starting at $10" autocomplete="off" style="height:30px;">
                   <button class="add-on" style="height:50px;"><i class="icon-search"></i></button>
                 </div>
             </form>

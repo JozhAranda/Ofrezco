@@ -13,20 +13,20 @@
         $aux = $_SESSION['user'];
         $user = $db->query("SELECT * FROM user WHERE username = '$aux'");
         $row = $user->fetch(PDO::FETCH_ASSOC);
-        $gigs = $db->query("SELECT title, photo FROM ". $aux);
+        $gigs = $db->query("SELECT title, photo, description FROM ". $aux);
     }
     else {
         $aux = $_SESSION['url'];
         $user = $db->query("SELECT * FROM user WHERE username = '$aux'");
         $row = $user->fetch(PDO::FETCH_ASSOC);
-        $gigs = $db->query("SELECT title, photo FROM ". $aux);
+        $gigs = $db->query("SELECT title, photo, description FROM ". $aux);
     }
 ?>
 <!DOCTYPE html>
 <html lang="en">    
     <head>
         <meta charset="utf-8">
-        <?php if (!empty($_SESSION['user'])) echo "<title>". $_SESSION['user'] ." | Ofrezco</title>"; 
+        <?php if (!empty($_SESSION['user']) || !empty($_COOKIE["user"])) echo "<title>". $_COOKIE["user"].$_SESSION['user'] ." | Ofrezco</title>"; 
         else echo "<title>".$_SESSION['url']."| Ofrezco</title>";?>
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,7 +36,7 @@
         <link href="css/bootstrap-responsive.css" rel="stylesheet"-->
         <link href="http://bootswatch.com/2/flatly/bootstrap.css" rel="stylesheet">
         <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="css/phrase.css" rel="stylesheet">
+        <link href="../css/logo.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700' rel='stylesheet' type='text/css'>
 		<style>
             body{font-family:'Open Sans', sans-serif;background:#fbfbfb;}
@@ -58,24 +58,37 @@
     <body>
 		<div style="height:3px;width:100%;background:url('https://d1wzu4qct23er4.cloudfront.net/assets/header_bar-cea2b632849690f1767c50d053c9100f.png') repeat scroll center top transparent;"></div>
         <div class="navbar navbar-static-top">
+        <?php if (isset($_COOKIE["user"]) || (isset($_SESSION['user']) && isset($_SESSION['iduser']))){ ?>
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
+                    </a>                        
+                    <a class="brand title" href="../" style="font-size:30px;">
+                        <div class="logo">
+                          <div class="box n1"></div>
+                          <div class="box n2"></div>
+                          <div class="box n3"></div>
+                          <div class="box n11"></div>
+                          <div class="box n5"></div>
+                          <div class="box n6"></div>
+                          <div class="box n7"></div>
+                          <div class="box n9"></div>
+                        </div>
                     </a>
-                    <a class="brand title" href="../" style="font-size:30px;">Ofrezco!</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
                             <li><a href="../">HOME</a></li>
                             <li><a href="#"><span class="label label-success">1</span> TO DO</a></li>
                             <li><a href="#"><img src="../img/chat.png" alt="conversation"></a></li> 
                             <li><a href="#">SHOPPING</a></li>  
-                            <li><a href="#">START SELLING</a></li> 
+                            <li><a href="i/">START SELLING</a></li> 
                             
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" style="background:rgb(239,239,233);border:0;" data-toggle="dropdown"><?php echo $_SESSION['user']; ?><b class="caret"></b></a>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" style="background:rgb(239,239,233);border:0;" data-toggle="dropdown"><?php echo $_COOKIE["user"].$_SESSION['user']; ?><b class="caret"></b></a>
                                 <ul class="dropdown-menu" style="background:rgb(150, 150, 150);">
+                                    <li><a href=""><i class="icon-user"></i> user</a></li>
                                     <li><a href="../core/user/setting/"><i class="icon-cog"></i> Setting</a></li>
                                     <li><a href="../help/support.php"><i class="icon-envelope"></i> Contact Support</a></li>
                                     <li class="divider"></li>
@@ -86,6 +99,36 @@
                     </div>
                 </div>
             </div>
+            <?php } else { ?>
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button><a class="brand title" href="#" style="font-size:30px;">
+                        <div class="logo">
+                          <div class="box n1"></div>
+                          <div class="box n2"></div>
+                          <div class="box n3"></div>
+                          <div class="box n11"></div>
+                          <div class="box n5"></div>
+                          <div class="box n6"></div>
+                          <div class="box n7"></div>
+                          <div class="box n9"></div>
+                        </div>
+                    </a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right">
+                            <!--li><a href="#">HOME</a></li>
+                            <li class="divider-vertical"></li-->
+                            <li><a href="#">GUIDE</a></li>
+                            <!--li class="divider-vertical"></li-->
+                            <li><a href="#signin" role="button" data-toggle="modal">SIGN IN</a></li>
+                            <!--li class="divider-vertical"></li-->
+                            <li><a href="#join" role="button" data-toggle="modal"><span class="label label-success">JOIN</span></a></li>
+                        </ul>    
+                    </div>
+                </div>
+            </div>
+    <?php } ?>
         </div>
 		<div class="navbar hidden-phone" style="width:98%;">
 			<div class="thumbnails row-fluid breadcrumb span12 " style="margin:0;background:rgba(245, 245, 245, 0.6);">
@@ -240,7 +283,7 @@
         <div class="container">
             <img class="span2" style="margin:0;padding-right:10px;" src="<?php echo $row['photo']; ?>" alt="<?php echo $row['username']; ?>">
             <div class="span7">
-                <h2><?php if(trim($_SESSION['url']) == $_SESSION['user']) { echo $_SESSION['user']; } else { echo $_SESSION['url']; } ?></h2>
+                <h2><?php if(trim($_SESSION['url']) == ($_SESSION['user'] || $_COOKIE["user"])) { echo $_COOKIE["user"].$_SESSION['user']; } else { echo $_SESSION['url']; } ?></h2>
                 <div class="span2 progress" style="margin:0;margin-top:6px;">
                     <div class="bar bar-success" style="border:1px solid #ccc;width:30%;"></div>
                 </div>      
@@ -253,14 +296,14 @@
         <div class="span12" style="margin-bottom:30px;"></div>        
         <div class="container">
             <div class="span12" style="margin:0;">
-            <?php while($rowi = $gigs->fetch(PDO::FETCH_ASSOC)) {?>       
-                <div class="thumbnail span3" id="categories" style="border-radius:5px;">                    
-                    <img src="i/<?php echo $rowi['photo']; ?>">
-                    <div class="modal-footer" style="text-align: left">
-                        <div class="row-fluid">
-                            <div class="span8"><b><?php echo $rowi['title']; ?></b></div>
-                            <div class="span4"><b>from $10</b></div>
-                        </div>
+            <?php while($rowi = $gigs->fetch(PDO::FETCH_ASSOC)) {?>                
+                <div class="thumbnail span6 clearfix" style="margin:0;border:1px solid #ddd;">
+                    <img class="media-object dp img-circle pull-right" alt="<?php echo $row['username']; ?>" src="<?php echo $row['photo']; ?>" style="width: 60px;height:60px;">
+                    <img src="i/<?php echo $rowi['photo']; ?>" alt="<?php echo $rowi['title']; ?>" class="pull-left span2 clearfix" style='margin-right:10px'>
+                    <div class="caption" class="pull-left">
+                        <h4><a href="#"><?php echo $rowi['title']; ?></a></h4>
+                        <p><?php echo $rowi['description']; ?></p>
+                        <small><b>From: </b><?php echo $row['name']." ". $row['firstname']; ?></small> 
                     </div>
                 </div>
             <?php } ?>
@@ -332,7 +375,7 @@
 		<div id="join" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-body">
 				<h5 class="text-center">Already a member? <a href="#signin" data-toggle="modal" data-dismiss="modal" aria-hidden="true">Sign In</a></h5><hr/>
-				<form accept-charset="UTF-8" action="core/register/" method="post"  style="margin:0;" onSubmit="BorrarAyuda(); return ValidateReg(this);">
+				<form accept-charset="UTF-8" action="../core/register/" method="post"  style="margin:0;" onSubmit="BorrarAyuda(); return ValidateReg(this);">
 					<label>Your email<input type="email" id="email" name="email" class="span4 pull-right" autocomplete="off" onBlur="ValidateEmail(this); BorrarAyuda();" onFocus="AyudaEmail();"/></label><br><br>
 					<label>Choose a Username<input type="text" id="username" name="username" class="span4 pull-right" autocomplete="off" onBlur="ValidateUsr(this); BorrarAyuda();" onFocus="AyudaUsr();" /></label><br><br>
 					<label>Choose a Password<input type="password" id="password" name="password" class="span4 pull-right" autocomplete="off" onBlur="ValidatePass(this); BorrarAyuda();" onFocus="AyudaPass();" /></label><br><br>
@@ -352,7 +395,7 @@
 		<!-- Modal Sign In-->
 		<div id="signin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<a href="#" class="label pull-right" data-dismiss="modal" aria-hidden="true">Close</a>                    
-			<form accept-charset="UTF-8" action="core/login/" method="post"  style="margin:0;" onSubmit="BorrarAyuda(); return ValidateReg(this);">			
+			<form accept-charset="UTF-8" action="../core/login/" method="post"  style="margin:0;" onSubmit="BorrarAyuda(); return ValidateReg(this);">			
                 <div class="modal-body">
                     <h5 class="text-center">Not a member yet? <a href="#join" data-toggle="modal" data-dismiss="modal" aria-hidden="true">Register now</a> — it's fun and easy!</h5><hr/>				
                     <label>Email/Username<input type="text" id="email_username_log" name="user_email" class="span4 pull-right" autocomplete="off" required/></label><br><br>
@@ -369,7 +412,7 @@
 		<!-- Modal Forgot password-->
 		<div id="forgot" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<a href="#" class="label pull-right" data-dismiss="modal" aria-hidden="true">Close</a>                    
-			<form accept-charset="UTF-8" action="core/password.php" method="post" style="margin:0;" onSubmit="BorrarAyuda(); return ValidateReg(this);">			
+			<form accept-charset="UTF-8" action="../core/password.php" method="post" style="margin:0;" onSubmit="BorrarAyuda(); return ValidateReg(this);">			
                 <div class="modal-body">
                     <h4 class="text-center" style="font-weight:600;">Reset Password</h4>
                     <p>Enter the email you used in your Fiverr profile. A password reset link will be sent to you by email.</p><hr/>
@@ -379,7 +422,7 @@
                     <button class="btn btn-success" name="pass_forgot" id="pass_forgot" type="submit">Submit</button>
                 </div>
 			</form>										
-		</div>
+		</div-->
         <!-- Le javascript==================================================-->
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/js/bootstrap.js"></script>

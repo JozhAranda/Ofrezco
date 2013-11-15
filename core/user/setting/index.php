@@ -22,14 +22,18 @@
         <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/css/bootstrap-responsive.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700' rel='stylesheet' type='text/css'>
         <link href="http://blueimp.github.io/jQuery-File-Upload/css/jquery.fileupload.css" rel="stylesheet">
+        <link href="../../../css/logo.css" rel="stylesheet">
 		<style>
-            body{font-family:'Open Sans', sans-serif;background:#f9f9f9; padding-top:100px;}
+            body{font-family:'Open Sans', sans-serif;background:#fbfbfb;}
 			.title{font-weight:bold;color:#f9f9f9;font-style:italic;}
 			.dropdown-toggle{background:#fff;color:#999;border:2px solid #ddd;}
 			.nav{font-size:14px;}
-			.dropdown-menu{background:#fff;width:200px;}
+			.navbar .nav > li > a {color:rgb(24, 188, 156);}
+			.navbar .navbar-inner{background:rgb(239,239,233);border-bottom:1px solid #ddd;}
+			.dropdown-menu{background:#fff;width:210px;}
 			.dropdown-submenu{background:#fff;}
 			.dropdown-toggle:hover{background:#fff;color:#999;}
+            .dropdown-menu > li > a:hover {background:#eee;}
         </style>
         <!--[if lt IE 9]>
             <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"></script>
@@ -38,9 +42,10 @@
         <script src="../../../js/validations.js" type="text/javascript"></script>
     </head>
     
-    <body>        
+    <body> 
+		<div style="height:3px;width:100%;background:url('https://d1wzu4qct23er4.cloudfront.net/assets/header_bar-cea2b632849690f1767c50d053c9100f.png') repeat scroll center top transparent;"></div>
+        <div class="navbar navbar-static-top">       
         <?php if (isset($_COOKIE['user']) || (isset($_SESSION['user']) && isset($_SESSION['iduser']))){ ?>
-        <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -48,26 +53,31 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand title" href="../../../" style="font-size:30px;">Ofrezco!</a>
+                    <a class="brand title" href="../../../" style="font-size:30px;">
+                        <div class="logo">
+                          <div class="box n1"></div>
+                          <div class="box n2"></div>
+                          <div class="box n3"></div>
+                          <div class="box n11"></div>
+                          <div class="box n5"></div>
+                          <div class="box n6"></div>
+                          <div class="box n7"></div>
+                          <div class="box n9"></div>
+                        </div>
+                    </a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
-                            <li class="divider-vertical"></li>
                             <li><a href="../../../">HOME</a></li>
-                            <li class="divider-vertical"></li>
                             <li><a href="#"><span class="label label-success">1</span> TO DO</a></li>
-                            <li class="divider-vertical"></li>
                             <li><a href="#"><img src="../../../img/chat.png" alt="conversation"></a></li> 
-                            <li class="divider-vertical"></li>
                             <li><a href="#">SHOPPING</a></li>  
-                            <li class="divider-vertical"></li>
-                            <li><a href="#">START SELLING</a></li> 
-                            <li class="divider-vertical"></li> 
-                            <li class="divider-vertical"></li>                            
+                            <li><a href="../../../<?php echo $_COOKIE['user'].$_SESSION['user'].'/i/'; ?>">START SELLING</a></li> 
                             
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" style="background:rgb(44, 62, 80);border:0;" data-toggle="dropdown"><?php echo $_SESSION['user']; ?><b class="caret"></b></a>
-                                <ul class="dropdown-menu" style="background:rgb(100, 100, 100);">
+                            <li class="dropdown"><a href="" class="dropdown-toggle" style="background:rgb(239,239,233);border:0;" data-toggle="dropdown"><?php echo $_COOKIE['user'].$_SESSION['user']; ?><b class="caret"></b></a>
+                                <ul class="dropdown-menu" style="background:rgb(150, 150, 150);">
+                                    <li><a href="../../../<?php echo $_COOKIE['user'].$_SESSION['user']; ?>"><i class="icon-user"></i> user</a></li>
                                     <li><a href=""><i class="icon-cog"></i> Setting</a></li>
-                                    <li><a href="../../../help/support.php"><i class="icon-envelope"></i> Contact Support</a></li>
+                                    <li><a href="help/support.php"><i class="icon-envelope"></i> Contact Support</a></li>
                                     <li class="divider"></li>
                                     <li><a href="../../logout.php"><i class="icon-off"></i> Logout</a></li>
                                 </ul>
@@ -77,11 +87,12 @@
                 </div>
             </div>
         </div>
+        <div style="margin-bottom:45px;"></div>     
         <div class="container">
             <?php if($_GET['var']) {?>
             <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Success!</strong> your profile has been updated successfully.
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Success!</strong> your profile has been updated successfully.
             </div>
             <?php } ?>
             <div class="tabbable"> <!-- Only required for left/right tabs -->
@@ -97,7 +108,7 @@
                                 <h2>Public Profile Settings</h2><hr><br>
                                 <p class="span3">Profile Photo</p>
                                 <div class="span5 pull-right" style="margin-bottom:15px;">                
-                                    <img src="../../../<?php echo $_SESSION['user'].'/'.$aux['photo']; ?>" alt="avatar" class="span2 pull-left" style="margin-top:-50px;"/>
+                                    <img src="../../../<?php echo $_COOKIE['user'].$_SESSION['user'].'/'.$aux['photo']; ?>" alt="avatar" class="span2 pull-left" style="margin-top:-50px;"/>
                                     <p class="span2" style="margin-top:-35px;">This photo is your identity on Ofrezco! and appears on your profile.</p>
                                     <span class="btn btn-success fileinput-button span2" style="margin-left: 20px;">
                                         <i class="icon-plus" style="margin-top:3px;"></i>
@@ -111,10 +122,6 @@
                                 <!--p class="span3">Your location</p>
                                 <select class="span5 pull-right" name="state">
                                     <option value="" selected="">Select state</option>
-                                    <option value="k12">K-12</option>
-                                </select-->
-                                <!--select class="span2 pull-right" name="city">
-                                    <option value="" selected="">Scholar Select</option>
                                     <option value="k12">K-12</option>
                                 </select-->
                                 <button type="submit" class="btn btn-primary span3 pull-right" style="margin:15px;" name="submita" id="submit">Enviar</button>

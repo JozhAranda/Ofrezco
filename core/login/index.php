@@ -44,10 +44,7 @@
 
 		if ( !empty($_POST['user_email'])) $user_email = sanitise_input($_POST["user_email"]); else $error = true;
 		if ( !empty($_POST['password'])) $password = sanitise_input($_POST["password"]); else $error = true;
-		if ( !empty($error)) { 
-			//echo '<script language="JavaScript"> alert("Error al acceder"); </script>'; 
-			header('Location: ../../404.html'); die; 
-		}
+		if ( !empty($error)) { header('Location: ../../404.html'); die; }
 		
 		$password = simple_encrypt($password);
 						
@@ -56,16 +53,22 @@
         }catch(PDOException $e){
 	        echo "ERROR: " . $e->getMessage();
     	}
+    	
 		$var = 0;
         if(isset($query)){
             while($row = $query->fetch(PDO::FETCH_ASSOC)){
                 if(($username == $row['user_email'] || $email == $row['user_email']) && $password == $row['password']){                  
-                    session_start();
-                    $string = $_SERVER['HTTP_USER_AGENT']; 
-                    $string .= $username; 
-                    $_SESSION['iduser'] = sha1($string);
-                    $_SESSION['user'] = $row['username'];
-                    
+                    if(empty($_POST['remember'])) {
+                        session_start();
+                        $string = $_SERVER['HTTP_USER_AGENT']; 
+                        $string .= $username; 
+                        $_SESSION['iduser'] = sha1($string);
+                        $_SESSION['user'] = $row['username'];
+                    }
+                    else {
+                        $user = $row['username'];
+                        setcookie("user", $user, time()+3600, "/", "");
+                    }
                     $verify = $db->query("SELECT name, firstname FROM user WHERE username='$user_email' OR email='$user_email'");
                     $aux = $verify->fetch(PDO::FETCH_ASSOC);
                     if($aux['name'] == null || $aux['firstname'] == null)

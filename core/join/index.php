@@ -18,6 +18,7 @@
         <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/css/bootstrap-responsive.css" rel="stylesheet"-->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700' rel='stylesheet' type='text/css'>
         <link href="http://blueimp.github.io/jQuery-File-Upload/css/jquery.fileupload.css" rel="stylesheet">
+        <link href="../../css/logo.css" rel="stylesheet">
 		<style>
             body{font-family:'Open Sans', sans-serif;background:#fbfbfb;}
 			.title{font-weight:bold;color:#f9f9f9;font-style:italic;}
@@ -41,7 +42,19 @@
             <div class="navbar-inner">
                 <div class="container">
                     <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-                    </button><a class="brand title" href="#" style="font-size:30px;">Ofrezco!</a>
+                    </button>                        
+                    <a class="brand title" href="../../" style="font-size:30px;">
+                        <div class="logo">
+                          <div class="box n1"></div>
+                          <div class="box n2"></div>
+                          <div class="box n3"></div>
+                          <div class="box n11"></div>
+                          <div class="box n5"></div>
+                          <div class="box n6"></div>
+                          <div class="box n7"></div>
+                          <div class="box n9"></div>
+                        </div>
+                    </a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
                             <li><a href=""><span class="label label-success"><?php echo $_SESSION['user']; ?></span></a></li>
@@ -51,12 +64,12 @@
             </div>
         </div>
         		
-        <div class="thumbnails  hidden-phone" style="margin-top:0;">
+        <div class="thumbnails  hidden-phone" style="margin-top:0;border-bottom:2px solid #ddd;">
             <img src="http://d2nt7j7ljjsiah.cloudfront.net/assets/v2_backgrounds/bg-homepage-welcome-new-trees-32849d8f8e18ff4eb284d85c826026b6.png" style="background:url(http://d2nt7j7ljjsiah.cloudfront.net/assets/v2_backgrounds/bg-homepage-welcome-new-clouds-768c386a323ec603c21ac36c23845257.png);"/>
         </div>
         <br><br>
 		<div class="container">
-            <form accept-charset="UTF-8" action="user.php" method="post" enctype="multipart/form-data" class="well well-small span6" style="margin:0;">
+            <form accept-charset="UTF-8" action="user.php" method="post" enctype="multipart/form-data" class="well well-small span6" style="margin:0;border:1px solid #ddd;">
                 <h3 class="text-center">Please complete the form below to complete your registration.</h3><br>                
                 <img src="../../img/avatar.jpg" alt="avatar" class="span2" style="margin:0;"/><br><br>
                 <span class="btn btn-success fileinput-button span3" style="margin-top:63px;">
@@ -65,12 +78,10 @@
                     <input id="fileupload" type="file" name="photo" />
                 </span><br><br><br><br><br><br>
                 <div class="input-append">
-                    <input style="color:#888;" type="text" class="span6" name="name" placeholder="Name" required />
-                    <!--span class="add-on" style="background:rgb(29, 204, 170);"><i class="icon-user"></i></span-->  
+                    <input style="color:#888;" type="text" class="span6" name="name" placeholder="Name" required /> 
                 </div><br><br>
                 <div class="input-append">
-                    <input style="color:#888;" type="text" class="span6" name="firstname" placeholder="Firstname" required /> 
-                    <!--span class="add-on" style="background:rgb(29, 204, 170);"><i class="icon-user"></i></span-->                     
+                    <input style="color:#888;" type="text" class="span6" name="firstname" placeholder="Firstname" required />                    
                 </div><br><br>
                 <textarea class="form-control span6" name="bio" id="contentbox" style="resize:none;color:#888;" placeholder="Your Bio" rows="5"></textarea>
                 <div id="count" class="label pull-right" style="margin-top: -10px;">350</div><br>
@@ -126,7 +137,7 @@
 				</select><br><br>
                 <button type="submit" class="btn btn-primary btn-block" name="submit" id="submit">Enviar</button>
             </form>
-            <div class="well well-small span5 pull-right">
+            <div class="well well-small span5 pull-right" style="border:1px solid #ddd;">
                 <h3 class="text-center">¡You can't wait to start, then start the magic!</h3><br>
                 <a href="../../" name="skip" class="btn btn-success span4" alt="skip">Skip</a><br><br><br>
                 <p>Don't worry, you can always change your profile data.</p>

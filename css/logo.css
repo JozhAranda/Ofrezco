@@ -1,0 +1,75 @@
+.box-shadow(#000000) {
+  -webkit-box-shadow: #000000;
+     -moz-box-shadow: #000000;
+          box-shadow: #000000;
+}
+
+.logo{
+    width:35px;
+    height:35px;
+    position:absolute;
+    top:42px;
+    margin:-31.5px;
+}
+.box{
+    position:absolute;
+    width:10px;
+    height:10px;
+}
+.n1{
+    left:10px;
+    background-color: #C55629;
+}
+.n2{
+    left:20px;
+    background-color: #1A3D4E;
+}
+.n3{
+    top:10px;
+    background-color: #EAC65A;
+}
+.n5{
+    top:20px;
+    background-color: #1A3D4E;
+}
+.n6{
+    top:20px;
+    left:10px;
+    background-color: #DAD0BE;
+}
+.n7{
+    top:20px;
+    left:20px;
+    background-color: #C55629;
+}
+.n9{
+    top:30px;
+    background-color: #79B0AF;
+}
+.n10{
+    top:30px;
+    left:30px;
+    background-color: #EAC65A;
+}
+.n11{
+    left:0;
+    background-color: #DAD0BE;
+}
+.box:before {
+  position:absolute;
+  top:-1.5px;
+  left:-1.5px;
+  content:"";
+  width:10px;
+  height:10px;
+  z-index: -1;
+  background-color:#FFF; 
+}
+.box:after {
+  position:absolute;
+  content:"";
+  width:10px;
+  height:10px;
+  z-index: -5;
+  .box-shadow(0px 0px 6px fade(#000000,50%));
+}
